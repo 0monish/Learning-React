@@ -38,27 +38,57 @@ const App = () => {
 
     // YOU WILL BE ABLE TO SEE THAT USERNAME DOESN'T GOT CHANGED IN DOM  
     // BECAUSE WE ARE TRYING TO MANIULATE THE DOM DIRECTLY WHICH SHOULDN'T BE THE CASE
+    // WE NEED TO MANIPULATE THE DOM WITH HELP OF REACT
 
     // )
 
     // SO RESOLVE THE ABOVE ISSUE THE IS A CONCEPT useState HOOK
 
-    const [no, setNo] = useState(10)
+    // const [no, setNo] = useState(10)
     // no IS A READABLE ABLE ELLEMENT
     // setNO IS A WRITEABLE FUNCTION WHICH IS USED TO SET THE VALUE OF no 
-    // AND IN useState() FUNCTION WE CAN ASSIGN THE VALUE FOR no. IT'S MORE LIKE INITIALIZATION
+    // AND IN useState() FUNCTION WE CAN ASSIGN THE VALUE FOR no IT'S MORE LIKE INITIALIZATION
+
+    // return (
+    //     // HERE EMPTY TAGS ARE CALLED FRAGMENTS AS WE RETURN ONLY ONE ELEMENT 
+    //     // SO INSTEAD OF RETURNING THE DIV ELEMENT AS WRAPER LIKE WE DID EARLIER
+    //     // WE CAN USE THIS FRAGMENTS AS A WRAPER BY NOT CREATING UNNESSARILY EXTRA ELEMENT(DIV)
+    //     <>
+    //         <h1>THE NUMBER IS {no}</h1>
+    //         <button onClick={() => setNo(no + 10)}>INCREMENT</button>
+    //         &emsp;<button onClick={() => setNo(no - 10)}>DECREMENT</button>
+    //     </>
+    // )
+
+    // NOW WE ARE PROCEEDING WITH THE FORM HANDLING WITH TWO WAY BINDING
+
+    const [movieName, setmovieName] = useState("")
+    const [movName, setmovName] = useState("")
+    const formSubmit = (e) => {
+        e.preventDefault();
+        setmovName(movieName)
+        setmovieName("")
+    }
 
     return (
-        // HERE EMPTY TAGS ARE CALLED FRAGMENTS AS WE RETURN ONLY ONE ELEMENT 
-        // SO INSTEAD OF RETURNING THE DIV ELEMENT AS WRAPER LIKE WE DID EARLIER
-        // WE CAN USE THIS FRAGMENTS AS A WRAPER BY NOT CREATING UNNESSARILY EXTRA ELEMENT(DIV)
         <>
-            <h1>THE NUMBER IS {no}</h1>
-            <button onClick={() => setNo(no + 10)}>INCREMENT</button>
-            &emsp;<button onClick={() => setNo(no - 10)}>DECREMENT</button>
+            <h1 className="text-2xl mb-5">Setting movie name through Form Submission </h1>
+
+            <form onSubmit={(e) => { formSubmit(e) }}>
+                <input
+                    className="px-4 py-3 rounded text-black"
+                    value={movieName}
+                    onChange={(e) => { setmovieName(e.target.value) }}
+                    type="text" />
+                <br />
+                <button className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 mt-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                    Button
+                </button>
+            </form>
+
+            <h1 className="text-2xl">My favourite movie is {movName} </h1>
         </>
     )
-
 }
 
 
