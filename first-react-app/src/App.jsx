@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import axios from 'axios'
 import Navbar from "./components/Navbar"
 import Card from "./components/Card"
 import Parent from "./components/Parent"
@@ -48,7 +49,7 @@ const App = () => {
     // )
 
 
-    
+
     // SO RESOLVE THE ABOVE ISSUE THE IS A CONCEPT useState HOOK
 
     // const [no, setNo] = useState(10)
@@ -173,6 +174,41 @@ const App = () => {
     // CREATING TWO COMPONENTS PARENT AND CHILD
 
     // return <Parent parentName="Ravi" childName="Kishan" />
+
+
+    // WORING WITH API, WE WILL BE USING A TOOL NAMED AXIOS YOU ARE REQUIRED TO INSTALL WITH THIS COMMAND "npm i axios"
+
+    // GETTING API DATA FROM SAMPLE WEBSITE https://picsum.photos/ THERE ARE MULTIPLE APIs PRESENT THERE
+
+    const [data, setData] = useState([]) // DATA RECEIVED FROM API IS IN ARRAY FORM
+
+    const getData = async () => {
+        // THE DATA WHICH IS BEING RECEIVED BY axios.get IS IN ASYNCHRONOUS DATA AND IT COMES IN THE FORM OF PROMISES
+        const response = await axios.get("https://picsum.photos/v2/list?page=2&limit=10")
+        // console.log(response) // BY THIS YOU CAN SEE THAT DATA IS RECIVED IN FORM OF PROMISE
+
+        setData(response.data)
+        // console.log(data) // TO WHICHEVER PROPERTIES OF data OBJECT YOU WILL LIKE TO WORK
+    }
+
+
+    return (
+        <>
+            <h1 className="text-3xl m-5 text-center">Getting API DATA</h1>
+            <button onClick={getData} className="bg-white flex active:scale-90 m-10 hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+                GET DATA
+            </button>
+
+            {/* GETTING THE DATA AND PRINTING THE DATA USING MAP FUNCTION ON BUTTON CLICK */}
+            {data.map(imgUrl => {
+                return <div className="p-5 m-6 bg-lime-200 inline-block">
+                    <img src={imgUrl.download_url} alt="some image" className="h-52" />
+                </div>
+
+            })}
+
+        </>
+    )
 }
 
 
