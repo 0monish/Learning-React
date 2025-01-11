@@ -3,6 +3,11 @@ import axios from 'axios'
 import Navbar from "./components/Navbar"
 import Card from "./components/Card"
 import Parent from "./components/Parent"
+import { Route, Routes } from "react-router-dom"
+import Home from "./pages/Home"
+import About from "./pages/About"
+import Contact from "./pages/Contact"
+import Services from "./pages/Services"
 
 const App = () => {
 
@@ -180,33 +185,68 @@ const App = () => {
 
     // GETTING API DATA FROM SAMPLE WEBSITE https://picsum.photos/ THERE ARE MULTIPLE APIs PRESENT THERE
 
-    const [data, setData] = useState([]) // DATA RECEIVED FROM API IS IN ARRAY FORM
+    // const [data, setData] = useState([]) // DATA RECEIVED FROM API IS IN ARRAY FORM
 
-    const getData = async () => {
-        // THE DATA WHICH IS BEING RECEIVED BY axios.get IS IN ASYNCHRONOUS DATA AND IT COMES IN THE FORM OF PROMISES
-        const response = await axios.get("https://picsum.photos/v2/list?page=2&limit=10")
-        // console.log(response) // BY THIS YOU CAN SEE THAT DATA IS RECIVED IN FORM OF PROMISE
+    // const getData = async () => {
+    //     // THE DATA WHICH IS BEING RECEIVED BY axios.get IS IN ASYNCHRONOUS DATA AND IT COMES IN THE FORM OF PROMISES
+    //     const response = await axios.get("https://picsum.photos/v2/list?page=2&limit=10")
+    //     // console.log(response) // BY THIS YOU CAN SEE THAT DATA IS RECIVED IN FORM OF PROMISE
 
-        setData(response.data)
-        // console.log(data) // TO WHICHEVER PROPERTIES OF data OBJECT YOU WILL LIKE TO WORK
-    }
+    //     setData(response.data)
+    //     // console.log(data) // TO WHICHEVER PROPERTIES OF data OBJECT YOU WILL LIKE TO WORK
+    // }
 
+    // return (
+    //     <>
+    //         <h1 className="text-3xl m-5 text-center">Getting API DATA</h1>
+    //         <button onClick={getData} className="bg-white flex active:scale-90 m-10 hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+    //             GET DATA
+    //         </button>
+
+    //         {/* GETTING THE DATA AND PRINTING THE DATA USING MAP FUNCTION ON BUTTON CLICK */}
+    //         {data.map(imgUrl => {
+    //             return <div className="p-5 m-6 bg-lime-200 inline-block">
+    //                 <img src={imgUrl.download_url} alt="some image" className="h-52" />
+    //             </div>
+
+    //         })}
+
+    //     </>
+    // )
+
+
+
+    // NOW PROCEEDING WITH REACT ROUTER DOM
+    // REACT ROUTER DOM IS A LIBRARY USED FOR HANDLING ROUTING I.E.(TRAVING FROM ONE PAGE TO ANOTHER) IN REACT APPLICATIONS. 
+    // IT ENABLES NAVIGATION BETWEEN DIFFERENT COMPONENTS (PAGES) WITHOUT RELOADING THE ENTIRE PAGE, 
+    // ALLOWING FOR A SMOOTHER, SINGLE-PAGE APPLICATION (SPA) EXPERIENCE.
+    
+    // TO GET STARTED FIRE THE COMMAND - npm i react-router-dom
+
+    // IN main.jsx FILE, YOU NEED TO WRAP YOUR APP WITH THE BrowserRouter COMPONENT 
+    // WHICH WILL PROVIDE ROUTING FUNCTIONALITY
+    // ALSO CREATING A DIRECTORY NAMED pages WHICH WILL CONTAIN DIFFERENT PAGES(COMPONENTS)
 
     return (
+
         <>
-            <h1 className="text-3xl m-5 text-center">Getting API DATA</h1>
-            <button onClick={getData} className="bg-white flex active:scale-90 m-10 hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-                GET DATA
-            </button>
+            <Navbar />
 
-            {/* GETTING THE DATA AND PRINTING THE DATA USING MAP FUNCTION ON BUTTON CLICK */}
-            {data.map(imgUrl => {
-                return <div className="p-5 m-6 bg-lime-200 inline-block">
-                    <img src={imgUrl.download_url} alt="some image" className="h-52" />
-                </div>
+            {/* ROUTES - IT’S A CONTAINER THAT WRAPS ALL YOUR ROUTE COMPONENTS. */}
+            <Routes>
 
-            })}
+                {/* 
+                    ROUTE - DEFINES A SINGLE ROUTE IN YOUR APP 
+                    IT MAPS A SPECIFIC URL PATH TO A REACT COMPONENT. 
+                    WHEN THE URL MATCHES THE PATH OF THE ROUTE, THE ASSOCIATED COMPONENT IS RENDERED.
+                    FOR MORE REFER componens/NavBar.jsx
+                */}
+                <Route path="/" element={<Home />} />
+                <Route path="/About" element={<About />} />
+                <Route path="/Contact" element={<Contact />} />
+                <Route path="/Services" element={<Services />} />
 
+            </Routes>
         </>
     )
 }
