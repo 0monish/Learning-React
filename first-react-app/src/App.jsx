@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import axios from 'axios'
 import Navbar from "./components/Navbar"
 import Card from "./components/Card"
@@ -8,6 +8,7 @@ import Home from "./pages/Home"
 import About from "./pages/About"
 import Contact from "./pages/Contact"
 import Services from "./pages/Services"
+import { MovContext } from "./context/Moviecontext"
 
 const App = () => {
 
@@ -220,35 +221,70 @@ const App = () => {
     // REACT ROUTER DOM IS A LIBRARY USED FOR HANDLING ROUTING I.E.(TRAVING FROM ONE PAGE TO ANOTHER) IN REACT APPLICATIONS. 
     // IT ENABLES NAVIGATION BETWEEN DIFFERENT COMPONENTS (PAGES) WITHOUT RELOADING THE ENTIRE PAGE, 
     // ALLOWING FOR A SMOOTHER, SINGLE-PAGE APPLICATION (SPA) EXPERIENCE.
-    
+
     // TO GET STARTED FIRE THE COMMAND - npm i react-router-dom
 
-    // IN main.jsx FILE, YOU NEED TO WRAP YOUR APP WITH THE BrowserRouter COMPONENT 
+    // IN main.jsx FILE, YOU NEED TO WRAP YOUR App COMPONENT WITH THE BrowserRouter COMPONENT 
     // WHICH WILL PROVIDE ROUTING FUNCTIONALITY
     // ALSO CREATING A DIRECTORY NAMED pages WHICH WILL CONTAIN DIFFERENT PAGES(COMPONENTS)
 
-    return (
+    // return (
 
-        <>
-            <Navbar />
+    //     <>
+    //         <Navbar />
 
-            {/* ROUTES - IT’S A CONTAINER THAT WRAPS ALL YOUR ROUTE COMPONENTS. */}
-            <Routes>
+    //         {/* ROUTES - IT’S A CONTAINER THAT WRAPS ALL YOUR ROUTE COMPONENTS. */}
+    //         <Routes>
 
-                {/* 
-                    ROUTE - DEFINES A SINGLE ROUTE IN YOUR APP 
-                    IT MAPS A SPECIFIC URL PATH TO A REACT COMPONENT. 
-                    WHEN THE URL MATCHES THE PATH OF THE ROUTE, THE ASSOCIATED COMPONENT IS RENDERED.
-                    FOR MORE REFER componens/NavBar.jsx
-                */}
-                <Route path="/" element={<Home />} />
-                <Route path="/About" element={<About />} />
-                <Route path="/Contact" element={<Contact />} />
-                <Route path="/Services" element={<Services />} />
+    //             {/* 
+    //                 ROUTE - DEFINES A SINGLE ROUTE IN YOUR APP 
+    //                 IT MAPS A SPECIFIC URL PATH TO A REACT COMPONENT. 
+    //                 WHEN THE URL MATCHES THE PATH OF THE ROUTE, THE ASSOCIATED COMPONENT IS RENDERED.
+    //                 FOR MORE REFER componens/NavBar.jsx
+    //             */}
+    //             <Route path="/" element={<Home />} />
+    //             <Route path="/About" element={<About />} />
+    //             <Route path="/Contact" element={<Contact />} />
+    //             <Route path="/Services" element={<Services />} />
+    //         </Routes>
+    //     </>
+    // )
 
-            </Routes>
-        </>
-    )
+
+
+    // NOW PROCEEDING WITH THE CONTEXT API
+    // THE CONTEXT API IN REACT PROVIDES A WAY TO MANAGE AND SHARE STATE ACROSS THE ENTIRE COMPONENT TREE,
+    // WITHOUT HAVING TO PASS PROPERTIES DOWN MANUALLY THROUGH EACH LEVEL OF COMPONENT
+    // IN OTHER WORDS IT ACTS AS A CENTRAL PLACE FROM WHERE ANY COMPONENT CAN ACCESS PROPERTY OR
+    // MANAGE STATE IRRESPECTIVE OF THEIR LEVEL IN THE COMPONENT TREE
+    // IT IS LIKE THE UPGRADED VERSION OF PROPS DRILLING AS IN THIS DATA THIS PROPERTY OR STATE 
+    // IS MANAGED COMPONENT BY COMPONENT WHICH CAN BE TEDIOUS WHICH TAKES US TO THE CONCEPT OF CONTEXT API 
+
+    // IT'S ESPECIALLY USEFUL FOR SHARING GLOBAL DATA LIKE THEMES, USER AUTHENTICATION STATUS, 
+    // LANGUAGE PREFERENCES, ETC., ACROSS MULTIPLE COMPONENTS IN A REACT APPLICATION.
+
+    // TO START WITH THIS CREATE THE FOLDER NAMED context UNDER src DIRECTORY WITH A 
+    // FILE NAMED SUPPOSE Moviecontext.jsx POCEEDING WITH FURTHER DISCUSSION IN THAT FILE
+
+
+    // AFTER CREATING THE CONTEXT API NOW LETS ACCESS IT
+    // TO ACCESS IT useContext(Context) WILL BE USED
+    // const movName = useContext(MovContext)
+
+    // return (
+    //     <>
+    //         <h1 className="absolute top-1/2 left-1/3 translate-y-1/2 text-5xl">THIS IS APP </h1>
+
+    //         {/* AFTER CREATING THE CONTEXT API NOW LETS ACCESS IT */}
+    //         {/* <h1 className="text-xl m-10"> I love {movName} Movie from App.jsx </h1> */}
+
+    //         {/* FROM OTHER COMPONENTS SEE THE CODE IN About AND Contact COMPONENTS */}
+    //         {/* UNCOMMMENT THE CONTEXT CODE IN THE BELOW COMPONENTS */}
+    //         <About /> 
+    //         <Contact />
+    //     </>
+    // )
+
 }
 
 
